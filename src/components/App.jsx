@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import { Component } from "react";
 
 import ContactForm from "./contacts/contactForm";
@@ -11,6 +10,18 @@ export default class App extends Component {
     filter: "",
   };
 
+  componentDidMount() {
+    const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+    if (contacts.length) {
+      this.setState({ contacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+    }
+  }
   addContact = (contact) => {
     const isDuplicate = this.state.contacts.some(
       (existingContact) =>
