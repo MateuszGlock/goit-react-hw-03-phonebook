@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 import { Component } from "react";
-import PropTypes from "prop-types";
 import styles from "./Contacts.module.scss";
+import PropTypes from "prop-types";
 
 export default class ContactForm extends Component {
   state = {
@@ -15,8 +15,28 @@ export default class ContactForm extends Component {
       [name]: value,
     });
   };
+  validateInput = () => {
+    const { name, number } = this.state;
+    const nameRegex = /^[a-zA-Z\s]+$/;
+    const numberRegex = /^\d+$/;
+
+    if (!nameRegex.test(name)) {
+      alert("Name must contain only letters and spaces.");
+      return false;
+    }
+
+    if (!numberRegex.test(number)) {
+      alert("Phone number must contain only digits.");
+      return false;
+    }
+
+    return true;
+  };
+
   handleSubmit = (ev) => {
     ev.preventDefault();
+    if (!this.validateInput()) return;
+
     const { name, number } = this.state;
     this.props.onAddContact({ id: nanoid(), name, number });
     this.setState({ name: "", number: "" });
