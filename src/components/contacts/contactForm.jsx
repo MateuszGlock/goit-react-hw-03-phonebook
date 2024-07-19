@@ -41,6 +41,7 @@ export default class ContactForm extends Component {
     this.props.onAddContact({ id: nanoid(), name, number });
     this.setState({ name: "", number: "" });
   };
+
   render() {
     const nameId = nanoid();
     const numId = nanoid();
