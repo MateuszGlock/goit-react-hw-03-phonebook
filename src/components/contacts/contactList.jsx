@@ -1,5 +1,6 @@
+import React from "react";
 import PropTypes from "prop-types";
-import ContactItem from "./contactItem.jsx";
+import ContactItem from "./contactItem";
 import styles from "./Contacts.module.scss";
 
 const ContactList = ({ contacts, filter, onDeleteContact }) => {

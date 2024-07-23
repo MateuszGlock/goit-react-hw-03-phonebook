@@ -1,25 +1,23 @@
-import { nanoid } from "nanoid";
-import styles from "./Contacts.module.scss";
+import React from "react";
 import PropTypes from "prop-types";
+import styles from "./Contacts.module.scss";
 
-const Filter = ({ filter, onChange }) => {
-  const searchId = nanoid();
-  return (
-    <div>
-      <label htmlFor={searchId}>Find contacts</label>
-      <input
-        type="text"
-        id={searchId}
-        name="filter"
-        value={filter}
-        onChange={onChange}
-        className={styles["filter-input"]}></input>
-    </div>
-  );
-};
+const Filter = ({ filter, onChange }) => (
+  <div>
+    <label>Find contacts</label>
+    <input
+      type="text"
+      name="filter"
+      value={filter}
+      onChange={onChange}
+      className={styles["filter-input"]}
+    />
+  </div>
+);
 
 Filter.propTypes = {
   filter: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
+
 export default Filter;
